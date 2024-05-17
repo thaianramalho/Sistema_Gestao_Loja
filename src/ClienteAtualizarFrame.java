@@ -34,18 +34,10 @@ public class ClienteAtualizarFrame extends JFrame {
         panel.add(nomeField);
         panel.add(new JLabel("CPF:"));
         panel.add(cpfField);
-        panel.add(new JLabel("Data de Nascimento:"));
+        panel.add(new JLabel("Data de Nascimento: (Insira no formato americano yyyy-mm-dd)"));
         panel.add(dataNascimentoField);
         panel.add(new JLabel("Email:"));
         panel.add(emailField);
-
-        JButton buscarButton = new JButton("Buscar");
-        buscarButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                buscarCliente();
-            }
-        });
 
         JButton atualizarButton = new JButton("Atualizar");
         atualizarButton.addActionListener(new ActionListener() {
@@ -54,36 +46,9 @@ public class ClienteAtualizarFrame extends JFrame {
                 atualizarCliente();
             }
         });
-
-        panel.add(buscarButton);
         panel.add(atualizarButton);
 
-        add(panel);
-    }
-
-    private void buscarCliente() {
-        int id = Integer.parseInt(idField.getText());
-
-        Connection conexao = Db.obterConexao();
-        String sql = "SELECT * FROM cliente WHERE id = ?";
-
-        try (PreparedStatement stmt = conexao.prepareStatement(sql)) {
-            stmt.setInt(1, id);
-            ResultSet rs = stmt.executeQuery();
-
-            if (rs.next()) {
-                nomeField.setText(rs.getString("nome"));
-                cpfField.setText(rs.getString("cpf"));
-                dataNascimentoField.setText(rs.getString("data_nascimento"));
-                emailField.setText(rs.getString("email"));
-            } else {
-                JOptionPane.showMessageDialog(this, "Cliente não encontrado.");
-            }
-        } catch (SQLException e) {
-            JOptionPane.showMessageDialog(this, "Erro ao buscar cliente: " + e.getMessage());
-        } finally {
-            Db.fecharConexao(conexao);
-        }
+        getContentPane().add(panel);
     }
 
     private void atualizarCliente() {

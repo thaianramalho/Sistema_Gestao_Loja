@@ -1,11 +1,12 @@
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.BorderLayout;
 
 public class MainFrame extends JFrame {
     public MainFrame() {
         setTitle("Sistema de Gestão");
-        setSize(800, 600);
+        setSize(695, 600);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLocationRelativeTo(null);
 
@@ -107,6 +108,10 @@ public class MainFrame extends JFrame {
         menuBar.add(menuVenda);
 
         setJMenuBar(menuBar);
+        
+        JLabel lblNewLabel = new JLabel("");
+        lblNewLabel.setIcon(new ImageIcon("C:\\Users\\admin\\Desktop\\repositorios\\TrabalhoPOO_etapa2_ThaianRamalho\\img\\Gestão-de-Qualidades.jpg"));
+        getContentPane().add(lblNewLabel, BorderLayout.CENTER);
     }
 
     public static void main(String[] args) {

@@ -53,7 +53,7 @@ public class ProdutoCadastroFrame extends JFrame {
         panel.add(marcaField);
         panel.add(new JLabel("Modelo:"));
         panel.add(modeloField);
-        panel.add(new JLabel("Data de Validade:"));
+        panel.add(new JLabel("Data de Validade: (Insira no formato americano yyyy-mm-dd)"));
         panel.add(dataValidadeField);
         panel.add(new JLabel("Tóxico:"));
         panel.add(toxicoBox);

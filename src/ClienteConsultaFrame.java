@@ -37,7 +37,7 @@ public class ClienteConsultaFrame extends JFrame {
         panel.add(nomeField);
         panel.add(new JLabel("CPF:"));
         panel.add(cpfField);
-        panel.add(new JLabel("Data de Nascimento:"));
+        panel.add(new JLabel("Data de Nascimento: (Insira no formato americano yyyy-mm-dd)"));
         panel.add(dataNascimentoField);
         panel.add(new JLabel("Email:"));
         panel.add(emailField);

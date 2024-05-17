@@ -12,10 +12,12 @@ public class VendaFrame extends JFrame {
     private JTextField clienteIdField;
     private JTextField produtoIdField;
     private JTextField quantidadeField;
+    private JTextField metodoPagamentoField;
+
 
     public VendaFrame() {
         setTitle("Realizar Venda");
-        setSize(400, 200);
+        setSize(400, 300);
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         setLocationRelativeTo(null);
 
@@ -25,6 +27,7 @@ public class VendaFrame extends JFrame {
         clienteIdField = new JTextField(10);
         produtoIdField = new JTextField(10);
         quantidadeField = new JTextField(5);
+        metodoPagamentoField = new JTextField(30);
 
         panel.add(new JLabel("ID do Cliente:"));
         panel.add(clienteIdField);
@@ -32,6 +35,9 @@ public class VendaFrame extends JFrame {
         panel.add(produtoIdField);
         panel.add(new JLabel("Quantidade:"));
         panel.add(quantidadeField);
+        panel.add(new JLabel("Método de Pagamento:"));
+        panel.add(metodoPagamentoField);
+
 
         JButton realizarVendaButton = new JButton("Realizar Venda");
         realizarVendaButton.addActionListener(new ActionListener() {
@@ -50,9 +56,10 @@ public class VendaFrame extends JFrame {
         int clienteId = Integer.parseInt(clienteIdField.getText());
         int produtoId = Integer.parseInt(produtoIdField.getText());
         int quantidade = Integer.parseInt(quantidadeField.getText());
+        String metodoPagamento = metodoPagamentoField.getText();
 
         Connection conexao = Db.obterConexao();
-        String sqlVenda = "INSERT INTO venda (cliente_id, data_venda, valor_total) VALUES (?, ?, ?)";
+        String sqlVenda = "INSERT INTO venda (cliente_id, data_venda, valor_total, metodo_pagamento) VALUES (?, ?, ?, ?)";
         String sqlItemVenda = "INSERT INTO item_venda (venda_id, produto_id, quantidade) VALUES (?, ?, ?)";
         String sqlAtualizaEstoque = "UPDATE produto SET quantidade_estoque = quantidade_estoque - ? WHERE id = ?";
         String sqlPrecoVenda = "SELECT preco_venda FROM produto WHERE id = ?";
@@ -77,6 +84,7 @@ public class VendaFrame extends JFrame {
                 stmtVenda.setInt(1, clienteId);
                 stmtVenda.setDate(2, new java.sql.Date(new Date().getTime()));
                 stmtVenda.setDouble(3, valorTotal);
+                stmtVenda.setString(4, metodoPagamento);
                 stmtVenda.executeUpdate();
 
                 int vendaId;

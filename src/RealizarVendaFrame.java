@@ -14,7 +14,7 @@ public class RealizarVendaFrame extends JFrame {
 
     public RealizarVendaFrame() {
         setTitle("Realizar Venda");
-        setSize(400, 200);
+        setSize(400, 300);
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         setLocationRelativeTo(null);
 
@@ -49,6 +49,7 @@ public class RealizarVendaFrame extends JFrame {
         int clienteId = Integer.parseInt(clienteIdField.getText());
         int produtoId = Integer.parseInt(produtoIdField.getText());
         int quantidade = Integer.parseInt(quantidadeField.getText());
+        
 
         Connection conexao = Db.obterConexao();
         String sqlVenda = "INSERT INTO venda (cliente_id, data_venda, valor_total) VALUES (?, ?, ?)";

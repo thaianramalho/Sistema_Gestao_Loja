@@ -11,7 +11,7 @@ public class HistoricoVendaFrame extends JFrame {
 
     public HistoricoVendaFrame() {
         setTitle("Histórico de Vendas");
-        setSize(600, 400);
+        setSize(650, 400);
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         setLocationRelativeTo(null);
 
@@ -29,7 +29,7 @@ public class HistoricoVendaFrame extends JFrame {
 
     private void carregarHistoricoVendas() {
         Connection conexao = Db.obterConexao();
-        String sql = "SELECT id, cliente_id, data_venda, valor_total FROM venda";
+        String sql = "SELECT id, cliente_id, data_venda, valor_total, metodo_pagamento FROM venda";
 
         try (PreparedStatement stmt = conexao.prepareStatement(sql)) {
             ResultSet rs = stmt.executeQuery();
@@ -38,12 +38,14 @@ public class HistoricoVendaFrame extends JFrame {
             model.addColumn("Cliente ID");
             model.addColumn("Data Venda");
             model.addColumn("Valor Total");
+            model.addColumn("Método de pagamento");
             while (rs.next()) {
-                Object[] row = new Object[4];
+                Object[] row = new Object[5];
                 row[0] = rs.getInt("id");
                 row[1] = rs.getInt("cliente_id");
                 row[2] = rs.getDate("data_venda");
                 row[3] = rs.getDouble("valor_total");
+                row[4] = rs.getString("metodo_pagamento");
                 model.addRow(row);
             }
             tabelaHistorico.setModel(model);

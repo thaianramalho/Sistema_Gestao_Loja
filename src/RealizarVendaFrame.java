@@ -92,7 +92,7 @@ public class RealizarVendaFrame extends JFrame {
                     stmtItemVenda.setInt(1, vendaId);
                     stmtItemVenda.setInt(2, produtoId);
                     stmtItemVenda.setInt(3, quantidade);
-                    stmtItemVenda.setDouble(4, precoVenda); // Setando o preço unitário igual ao preço de venda
+                    stmtItemVenda.setDouble(4, precoVenda);
                     stmtItemVenda.executeUpdate();
                 }
 
